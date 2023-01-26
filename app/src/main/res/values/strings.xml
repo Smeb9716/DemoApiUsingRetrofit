@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoAPI</string>
+    <string name="path_retrofit">Path Retrofit</string>
+    <string name="query_param_retrofit">Query Param Retrofit</string>
+</resources>
