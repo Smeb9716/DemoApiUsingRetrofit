@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         // Sử dụng @Path trong Retrofit
         tvPathAPI.setOnClickListener {
+            Constant.BASE_URL = "https://jsonplaceholder.typicode.com/"
             val listCommentByPath = RetrofitClient.apiService.getListCommentByPath(1)
             listCommentByPath.enqueue(object : Callback<MutableList<User>> {
                 @SuppressLint("LongLogTag")
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         // Sử dụng @Query trong Retrofit
         tvQueryAPI.setOnClickListener {
+            Constant.BASE_URL = "https://jsonplaceholder.typicode.com/"
             val listCommentByQuery = RetrofitClient.apiService.getListCommentByQuery(2)
             listCommentByQuery.enqueue(object : Callback<MutableList<User>>{
                 @SuppressLint("LongLogTag")
@@ -75,6 +77,25 @@ class MainActivity : AppCompatActivity() {
 
             })
         }
-    }
 
+        // Sử dụng @Post trong Retrofit
+        tvPostAPI.setOnClickListener {
+            Constant.BASE_URL = "https://jsonplaceholder.typicode.com/"
+            val user = User(1, 101, "Test API Post", "Hiep Pham Dinh")
+            val addUserByBody = RetrofitClient.apiService.addUserByBody(user)
+            addUserByBody.enqueue(object : Callback<User>{
+                @SuppressLint("LongLogTag")
+                override fun onResponse(call: Call<User>, response: Response<User>) {
+                    Log.e("Logger addUserByBody Success", response.body()!!.body)
+                }
+
+                @SuppressLint("LongLogTag")
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    Log.e("Logger addUserByBody Fail", t.message.toString())
+                }
+
+            })
+
+        }
+    }
 }
