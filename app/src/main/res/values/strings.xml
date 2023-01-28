@@ -3,4 +3,5 @@
     <string name="path_retrofit">Path Retrofit</string>
     <string name="query_param_retrofit">Query Param Retrofit</string>
     <string name="post_retrofit">Post Retrofit</string>
+    <string name="header_retrofit">Add Token In Header Retrofit</string>
 </resources>

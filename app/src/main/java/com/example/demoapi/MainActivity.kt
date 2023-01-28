@@ -97,5 +97,26 @@ class MainActivity : AppCompatActivity() {
             })
 
         }
+
+        // Sử dụng @Header Authorization + @Query by Dịch Vụ Công
+        tvHeaderAPI.setOnClickListener {
+            Constant.BASE_URL = "http://14.248.82.173:8321/"
+            val listBrief = RetrofitClient.apiService.getListBrief("eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJyZXZvdGVjaCIsImlhdCI6MTY3NDg2MTM3NCwiZXhwIjoxNjc0ODgyOTc0LCJ1c2VybmFtZSI6InRhbnQuYm52In0.gLGgN21hWkrbpfx_XnmuI_n1Owhf67IQhK_8KgfE1Fl8u24x6-egcV9ISLt91ZGBomtnKC0lsPlLKmSfxcRKuf48WOgwQryEeapiIRmAkmlbsm-ekilohkWlN9xUWxGOByuwOaLzR0TQwXuXn-kLS45j8cnyJ_c0fBivqVUpVx6fqbdmcKCWnxUo94KdNs1kLMEA2FA6NYU4CxknWjVATzghH6xoKesn6oYcWcuj5R27nSL-hVn0imyrgzLyQwQZeXfZ_6drDmLzoXPAhN0g6lAmlSrsphFnF1Bp5R-FLqqiQirkn2QfooBK0VXIx5jFxaaEAIQn0wfTqn-6I2UyPw", "240")
+            listBrief.enqueue(object : Callback<Business>{
+                @SuppressLint("LongLogTag")
+                override fun onResponse(
+                    call: Call<Business>,
+                    response: Response<Business>
+                ) {
+                    Log.e("Logger listBrief Success", response.body()!!.data[0].id!!)
+                }
+
+                @SuppressLint("LongLogTag")
+                override fun onFailure(call: Call<Business>, t: Throwable) {
+                    Log.e("Logger listBrief Fail", t.message.toString())
+                }
+
+            })
+        }
     }
 }

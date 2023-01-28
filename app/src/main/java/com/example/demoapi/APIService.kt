@@ -15,4 +15,8 @@ interface APIService {
     // @Post
     @POST("posts")
     fun addUserByBody(@Body user: User): Call<User>
+
+    // @Header & @Query
+    @GET("BusinessService/efileProcessView")
+    fun getListBrief(@Header("Authorization") authorization: String, @Query("menuId") menuId: String): Call<Business>
 }
